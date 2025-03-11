@@ -1,8 +1,8 @@
-<H3>ENTER YOUR NAME</H3>
-<H3>ENTER YOUR REGISTER NO.</H3>
+<H3>ENTER YOUR NAME: Nathin R</H3>
+<H3>ENTER YOUR REGISTER NO: 212222230090</H3>
 <H3>EX. NO.1</H3>
-<H3>DATE</H3>
-<H1 ALIGN =CENTER> Introduction to Kaggle and Data preprocessing</H1>
+<H3>DATE:11/03/2025</H3>
+<H1 ALIGN =CENTER> Introduction to Kaggle and Data Preprocessing</H1>
 
 ## AIM:
 
@@ -37,14 +37,63 @@ STEP 5:Normalizing the data<BR>
 STEP 6:Splitting the data into test and train<BR>
 
 ##  PROGRAM:
-TYPE YOUR CODE HERE
+```
+#importing required libraries
+from google.colab import files
+import pandas as pd
+import seaborn as sns
+import io
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
+from scipy import stats
+import numpy as np
 
+#loading dataset
+df=pd.read_csv("archive.zip")
+print(df)
 
+#Splitting Features and Target Variables
+x=df.iloc[:,:-1].values
+print(x)
+
+#Handling Missing Values
+y=df.iloc[:,-1].values
+print(y)
+print(df.isnull().sum())
+
+numeric_df = df.select_dtypes(include=np.number)
+df[numeric_df.columns]=df[numeric_df.columns].fillna(numeric_df.mean().round(1))
+print(df.isnull().sum())
+
+y = df.iloc[:, -1].values
+print(y)
+df.duplicated()
+
+if 'Calories' in df.columns:
+  print(df['Calories'].describe())
+else:
+  print("Column 'Calories' not found in the DataFrame.")
+
+scaler=MinMaxScaler()
+df1=pd.DataFrame(scaler.fit_transform(data))
+print(df1)
+
+X_train,X_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
+print(X_train)
+print(len(X_train))
+print(X_test)
+print(len(X_test))
+```
 ## OUTPUT:
-SHOW YOUR OUTPUT HERE
-
+![image](https://github.com/user-attachments/assets/459650cb-4ae1-4be3-87c7-1ae11ec1d441)
+![image](https://github.com/user-attachments/assets/e141717e-c958-4e2d-8b36-46e45b6698d3)
+![image](https://github.com/user-attachments/assets/ea75b4b5-9ee0-49e2-980e-0a68e16a3610)
+![image](https://github.com/user-attachments/assets/750773bb-9a3d-463a-b9cd-d9d972e23b28)
+![image](https://github.com/user-attachments/assets/39e05fc4-4692-436a-b407-e837cf9f51dd)
+![image](https://github.com/user-attachments/assets/654ba1f4-630e-407c-8540-75aa3e4ca560)
+![image](https://github.com/user-attachments/assets/bc927c78-a598-4d9e-9a08-a5315a198ddd)
+![image](https://github.com/user-attachments/assets/c2c38496-18f3-442e-98ec-aba612551129)
 
 ## RESULT:
 Thus, Implementation of Data Preprocessing is done in python  using a data set downloaded from Kaggle.
-
-
